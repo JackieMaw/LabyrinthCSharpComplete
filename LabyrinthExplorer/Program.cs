@@ -1,15 +1,11 @@
-﻿string filename = "labyrinth_5x5.txt";
+﻿string filename = @"..\..\..\labyrinth_5x5.txt";
 Labyrinth labyrinth = new Labyrinth(filename);
+labyrinth.PrintLabyrinth();
 
-DijkstraSolver solver = new DijkstraSolver(labyrinth);
-int shortestCost = solver.FindShortestPath();
+var shortestPath = DijkstraSolver.FindShortestPath(labyrinth);
 
-if (shortestCost != -1)
+Console.WriteLine("Shortest path found:");
+foreach (var (x, y) in shortestPath)
 {
-    Console.WriteLine($"✅ Shortest path cost: {shortestCost}");
-    solver.PrintShortestPath();
-}
-else
-{
-    Console.WriteLine("❌ No path found.");
+    Console.WriteLine($"({x}, {y})");
 }
